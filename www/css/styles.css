@@ -1,0 +1,95 @@
+:root {
+  --col-admin: #4caf50;
+  --col-user: #ff9800;
+  --col-result: #e91e63;
+}
+:focus {
+  outline: none;
+}
+
+@font-face { font-family: gid; src: url(gidolinyaregular.otf); }
+* { font-family: gid; text-transform: uppercase; user-select: none; }
+
+h1 { margin: 0 auto; }
+h2 { margin: 0 0 0.5em; font-size: 1em; text-align: center; }
+
+button {
+  display: inline-block;
+  margin: 4px;
+  padding: 0.5em 0.75em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background: white;
+  border: 2px solid black;
+}
+
+.stepper { display: block; padding: 0; margin: 4px auto; border-radius: 1.5em; overflow: hidden; }
+.stepper * { text-align: center; display: inline-block; }
+.stepper span:nth-child(2n-1) { font-size: 1.5em; }
+.stepper span:nth-child(1) { padding: 0.1em 0.4em 0.2em 0.75em; }
+.stepper span:nth-child(2) { padding: 0.6em 0 0.5em; width: 3em; background: white; color: black; }
+.stepper span:nth-child(3) { padding: 0.1em 0.6em 0.2em 0.3em; }
+
+#cb, .main-menu, .add-plan, .plan-list, .open-plan, .user-vote, .edit-vote, .day-votes, .results {
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+#cb {
+  overflow: hidden;
+}
+
+.main-menu {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  box-sizing: border-box;
+  align-items: center;
+  padding: 20% 0;
+}
+.main-menu button {
+  align-self: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.add-plan {
+  display: grid;
+  grid-template-rows: 2fr 3fr 2fr 2fr 2fr 2fr 1fr;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 5% 1em;
+}
+.a-year, .a-month, .a-week, .a-day, .a-type, .a-num { display: grid; box-sizing: border-box; align-items: center; }
+.add-plan .a-year { grid-template-columns: repeat(3, 1fr); }
+.add-plan .a-year h2 { grid-column-start: 1; grid-column-end: 4; }
+.add-plan .a-month { grid-template-columns: repeat(6, 1fr); }
+.add-plan .a-month h2 { grid-column-start: 1; grid-column-end: 7; }
+.add-plan .a-week { grid-template-columns: repeat(3, 1fr); }
+.add-plan .a-week h2 { grid-column-start: 1; grid-column-end: 4; }
+.add-plan .a-day { grid-template-columns: repeat(7, 1fr); }
+.add-plan .a-day h2 { grid-column-start: 1; grid-column-end: 8; }
+.add-plan .a-type { grid-template-columns: repeat(3, 1fr); }
+.add-plan .a-type h2 { grid-column-start: 1; grid-column-end: 4; }
+
+.open-plan, .edit-vote { display: grid; grid-template-rows: 1fr 1fr 2fr; align-items: center; padding: 20% 0; }
+.open-plan > *, .edit-vote > * { display: block; font-size: 2em; width: 75%; text-align: center; margin: 0 auto; }
+.open-plan input, .edit-vote input { border: none; border-bottom: 2px solid black; }
+
+
+/* ANIMATIONS */
+
+
+/* COLORING*/
+.add-plan button, .open-plan button { border: 2px solid var(--col-admin); }
+.add-plan .stepper { border: 2px solid var(--col-admin); background: var(--col-admin); color: white; }
+.add-plan .select, .open-plan .select { background: var(--col-admin); color: white; }
+
+.user-vote button, .edit-vote button { border: 2px solid var(--col-user); }
+.user-vote .select, .edit-vote .select { background: var(--col-user); color: white; }
+
+.results button { border: 2px solid var(--col-result); }
+.results .select { background: var(--col-result); color: white; }
