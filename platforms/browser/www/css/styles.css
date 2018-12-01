@@ -12,6 +12,7 @@
 
 h1 { margin: 0 auto; }
 h2 { margin: 0 0 0.5em; font-size: 1em; text-align: center; }
+a { text-decoration: none; color: black; }
 
 button {
   display: inline-block;
@@ -38,6 +39,9 @@ button {
   width: 100%;
   height: 100%;
 }
+.add-plan, .plan-list, .open-plan, .user-vote, .edit-vote, .day-votes, .results, .loading {
+  display: none;
+}
 
 #cb {
   overflow: hidden;
@@ -46,6 +50,7 @@ button {
 .main-menu {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
+  grid-gap: 4px;
   box-sizing: border-box;
   align-items: center;
   padding: 20% 0;
@@ -54,14 +59,15 @@ button {
   align-self: center;
   width: 80%;
   margin: 0 auto;
+  font-size: 1.25em;
+  border: none;
 }
 
 .add-plan {
-  display: grid;
   grid-template-rows: 2fr 3fr 2fr 2fr 2fr 2fr 1fr;
   box-sizing: border-box;
   align-items: center;
-  padding: 5% 1em;
+  padding: 32px 16px 16px;
 }
 .a-year, .a-month, .a-week, .a-day, .a-type, .a-num { display: grid; box-sizing: border-box; align-items: center; }
 .add-plan .a-year { grid-template-columns: repeat(3, 1fr); }
@@ -75,21 +81,41 @@ button {
 .add-plan .a-type { grid-template-columns: repeat(3, 1fr); }
 .add-plan .a-type h2 { grid-column-start: 1; grid-column-end: 4; }
 
-.open-plan, .edit-vote { display: grid; grid-template-rows: 1fr 1fr 2fr; align-items: center; padding: 20% 0; }
+.open-plan, .edit-vote { grid-template-rows: 1fr 1fr 2fr; align-items: center; padding: 20% 0; }
 .open-plan > *, .edit-vote > * { display: block; font-size: 2em; width: 75%; text-align: center; margin: 0 auto; }
 .open-plan input, .edit-vote input { border: none; border-bottom: 2px solid black; }
 
 
+
 /* ANIMATIONS */
+.loading {
+  position: fixed; left: 50%; top: 50%; transform: translate(50%, -50%); width: 50%; padding-top: 50%; border-radius: 50%; border: 5px solid #000; border-color: #000 transparent #000 transparent; animation: loading 1.2s linear infinite;
+}
+@keyframes loading {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.btns { position: fixed; animation: btns 2s linear infinite; padding: 0; margin: 0; top: 0; }
+.btns i { padding: 0; margin: 0; font-size: 2.5em; }
+.btn_main { display: none; width: 100%; text-align: center; }
+.btn_next { right: 0; }
+.btn_prev { left: 0; }
+@keyframes btns {
+  0% { opacity: 1; }
+  50% { opacity: 0.25; }
+  100% {opacity: 1; }
+}
+
 
 
 /* COLORING*/
 .add-plan button, .open-plan button { border: 2px solid var(--col-admin); }
 .add-plan .stepper { border: 2px solid var(--col-admin); background: var(--col-admin); color: white; }
-.add-plan .select, .open-plan .select { background: var(--col-admin); color: white; }
+.add-plan .select, .open-plan .select, .main-menu button:nth-of-type(1), .main-menu button:nth-of-type(2) { background: var(--col-admin); color: white; }
 
 .user-vote button, .edit-vote button { border: 2px solid var(--col-user); }
-.user-vote .select, .edit-vote .select { background: var(--col-user); color: white; }
+.user-vote .select, .edit-vote .select, .main-menu button:nth-of-type(3), .main-menu button:nth-of-type(4) { background: var(--col-user); color: white; }
 
 .results button { border: 2px solid var(--col-result); }
-.results .select { background: var(--col-result); color: white; }
+.results .select, .main-menu button:nth-of-type(5) { background: var(--col-result); color: white; }

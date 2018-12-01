@@ -2,11 +2,15 @@ var myApp = new Framework7();
 var $$ = Dom7;
 //var mainView = myApp.addView('.view-main', { dynamicNavbar: true });
 
-function generatePlanForm() {
+function page(p) {
+  $('#cb > div').hide();
+  $('.'+p).css('display','grid');
 
-  var month_names = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
-  var day_names = ['M','T','O','T','F','L','S'];
-
+  if (p == 'main-menu') {
+    $('.btn_main').hide();
+  } else {
+    $('.btn_main').show();
+  }
 }
 
 $$(document).on('deviceready', function() {
@@ -19,16 +23,22 @@ $$(document).on('deviceready', function() {
     $(this).val(y+i);
   });
 
+  // MENU CONTROLS
+  $('.main-menu button').click(function() { page( $(this).val() ); });
+
   // CONTROLS FOR ADDING NEW PLAN
   $('.add-plan button').click(function() {
     if ($(this).parent().hasClass("add-plan")) {
       if ($('.a-year .select').length > 0 && $('.a-month .select').length > 0 && $('.a-week .select').length > 0 && $('.a-day .select').length > 0 && $('.a-type .select').length > 0 && parseInt($('.stepper :nth-child(2)').text()) > 0) {
+        alert('Plan tilføjet!');
         var r = [];
         $('.add-plan .select').each(function() {
            r.push( $(this).parent().attr("class") +":"+ $(this).val() );
         });
         r.push( 'a-num' +":"+ $('.stepper :nth-child(2)').text() );
         console.log(r);
+      } else {
+        alert('Du mangler at vælge noget...');
       }
       return;
     }
@@ -41,11 +51,13 @@ $$(document).on('deviceready', function() {
   });
   $('.stepper :nth-child(1)').click(function() {
     var c = parseInt( $('.stepper :nth-child(2)').text() );
-    c > 0 ? $('.stepper :nth-child(2)').text( c-1 ) : 0;
+    if (c > 0) { $('.stepper :nth-child(2)').text( c-1 ); }
+    if (c == 1) { $('.add-plan > button').text('Vis tilføjede'); }
   });
   $('.stepper :nth-child(3)').click(function() {
     var c = parseInt( $('.stepper :nth-child(2)').text() );
     $('.stepper :nth-child(2)').text( c+1 );
+    if (c == 0) { $('.add-plan > button').text('Tilføj'); }
   });
 
 });
