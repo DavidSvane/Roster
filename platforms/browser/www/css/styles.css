@@ -1,3 +1,4 @@
+/* VARIABLES AND FONTS */
 :root {
   --col-admin: #4caf50;
   --col-user: #ff9800;
@@ -10,8 +11,12 @@
 @font-face { font-family: gid; src: url(gidolinyaregular.otf); }
 * { font-family: gid; text-transform: uppercase; user-select: none; }
 
+
+
+/* STANDARD ELEMENTS */
 h1 { margin: 0 auto; }
 h2 { margin: 0 0 0.5em; font-size: 1em; text-align: center; }
+h3 { margin: 0 auto; font-weight: normal; }
 a { text-decoration: none; color: black; }
 
 button {
@@ -24,51 +29,31 @@ button {
   border: 2px solid black;
 }
 
-.stepper { display: block; padding: 0; margin: 4px auto; border-radius: 1.5em; overflow: hidden; }
-.stepper * { text-align: center; display: inline-block; }
-.stepper span:nth-child(2n-1) { font-size: 1.5em; }
-.stepper span:nth-child(1) { padding: 0.1em 0.4em 0.2em 0.75em; }
-.stepper span:nth-child(2) { padding: 0.6em 0 0.5em; width: 3em; background: white; color: black; }
-.stepper span:nth-child(3) { padding: 0.1em 0.6em 0.2em 0.3em; }
 
-#cb, .main-menu, .add-plan, .plan-list, .open-plan, .user-vote, .edit-vote, .day-votes, .results {
+
+/* MAIN DIVS */
+#cb > div, #cb > a {
   position: fixed;
   left: 0;
   top: 0;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-}
-.add-plan, .plan-list, .open-plan, .user-vote, .edit-vote, .day-votes, .results, .loading {
   display: none;
-}
-
-#cb {
-  overflow: hidden;
-}
-
-.main-menu {
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
-  grid-gap: 4px;
-  box-sizing: border-box;
   align-items: center;
-  padding: 20% 0;
 }
-.main-menu button {
-  align-self: center;
-  width: 80%;
-  margin: 0 auto;
-  font-size: 1.25em;
-  border: none;
-}
+#cb > div.main-menu { display: grid; }
 
-.add-plan {
-  grid-template-rows: 2fr 3fr 2fr 2fr 2fr 2fr 1fr;
-  box-sizing: border-box;
-  align-items: center;
-  padding: 32px 16px 16px;
-}
+
+
+/* MENU */
+.main-menu { grid-template-rows: repeat(4, 1fr); grid-gap: 4px; padding: 20% 0; }
+.main-menu button { align-self: center; width: 80%; margin: 0 auto; padding: 16px 0; font-size: 1.25em; }
+
+
+
+/* ADD PLAN FORM */
+.add-plan { grid-template-rows: 2fr 3fr 2fr 2fr 2fr 2fr 1fr; padding: 32px 16px 16px; }
 .a-year, .a-month, .a-week, .a-day, .a-type, .a-num { display: grid; box-sizing: border-box; align-items: center; }
 .add-plan .a-year { grid-template-columns: repeat(3, 1fr); }
 .add-plan .a-year h2 { grid-column-start: 1; grid-column-end: 4; }
@@ -81,26 +66,89 @@ button {
 .add-plan .a-type { grid-template-columns: repeat(3, 1fr); }
 .add-plan .a-type h2 { grid-column-start: 1; grid-column-end: 4; }
 
-.open-plan, .edit-vote { grid-template-rows: 1fr 1fr 2fr; align-items: center; padding: 20% 0; }
-.open-plan > *, .edit-vote > * { display: block; font-size: 2em; width: 75%; text-align: center; margin: 0 auto; }
-.open-plan input, .edit-vote input { border: none; border-bottom: 2px solid black; }
+.stepper { display: block; padding: 0; margin: 4px auto; border-radius: 1.5em; overflow: hidden; }
+.stepper * { text-align: center; display: inline-block; }
+.stepper span:nth-child(2n-1) { font-size: 1.5em; }
+.stepper span:nth-child(1) { padding: 0.1em 0.4em 0.2em 0.75em; }
+.stepper span:nth-child(2) { padding: 0.6em 0 0.5em; width: 3em; background: white; color: black; }
+.stepper span:nth-child(3) { padding: 0.1em 0.6em 0.2em 0.3em; }
+
+
+
+/* SUB-PLAN LIST */
+.plan-list { grid-template-rows: calc(100% - 108px) 42px 42px; padding: 42px 0px 16px; grid-gap: 8px; }
+.plan-list .list { display: block; box-sizing: border-box; width: 100%; height: 100%; overflow-y: scroll; padding: 8px 0; }
+.plan-list > button { margin: 0 20px 2px; }
+.plan-list .list i { display: none; }
+.plan-list .list div { display: grid; box-sizing: border-box; grid-template-columns: 5fr 1fr; padding: 8px 16px; }
+.plan-list .info { display: grid; box-sizing: border-box; grid-template-rows: repeat(3, 1fr); width: 100%; height: 100%; padding: 12px 80px; grid-gap: 8px; }
+.plan-list .info input { border: none; border-bottom: 1px solid black; text-align: center; }
+
+.success { display: grid; box-sizing: border-box; grid-template-rows: repeat(4, 1fr); padding: 30% 0; align-items: center; justify-content: center; }
+.success h3:last-child { color: red; }
+
+
+
+/* USER INPUT MENUS */
+.open-plan, .user-vote, .edit-vote, .calc, .new-menu { padding: 20% 0; }
+.open-plan { grid-template-rows: repeat(3, 1fr); } .edit-vote, .user-vote, .new-menu, .calc { grid-template-rows: repeat(4, 1fr); }
+.open-plan > *, .edit-vote > *, .user-vote > *, .calc > *, .new-menu > * { display: block; font-size: 2em; width: 75%; text-align: center; margin: 0 auto; }
+.open-plan input, .edit-vote input, .user-vote input, .calc input, .new-menu input { border: none; border-bottom: 2px solid black; }
+
+
+
+/* VOTING PAGES */
+.voting, .week-vote { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
+.voting button, .week-vote > button { box-sizing: border-box; margin: 0 16px; }
+.calendar { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
+
+.calendar .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
+.calendar .years > div:first-child { text-align: center; font-size: 2em; }
+.calendar .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, 42px); }
+.calendar .c_months > div:first-child { text-align: center; font-size: 1.5em; }
+.calendar .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; }
+.calendar .titles { text-align: center; }
+.calendar .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); }
+.calendar .week { display: grid; align-items: center; justify-content: center; }
+.calendar .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 42px; }
+.calendar .types div { display: none; }
+.calendar .type, .calendar .type > * { width: 100%; height: 100%; font-size: 0; }
+.calendar .type .types { background: #ccc; }
+.calendar .type .types.v1 { background: var(--col-admin); }
+.calendar .type .types.v2 { background: var(--col-user); }
+.calendar .type .types.v3 { background: var(--col-result); }
+.calendar .type .empty { background: #eee; }
+
+.week-vote .weekly { display: grid; grid-gap: 4px; box-sizing: border-box; height: calc(100% - 54px); padding: 0 16px; margin: 42px 0 12px; grid-template-rows: repeat(8, 2fr); }
+.week-vote .week { display: grid; box-sizing: border-box; grid-template-columns: 20px repeat(3, 1fr); height: 100%; align-items: center; justify-content: center; }
+.week-vote .week > div:first-child { grid-column-start: 1; grid-column-end: 5; }
+.week-vote .week div { display: grid; align-items: center; justify-content: center; }
+.week-vote .week div:first-child { font-size: 1.5em; }
+.week-vote .days, .week-vote .fills { display: grid; box-sizing: border-box; height: 100%; grid-gap: 4px; grid-template-columns: 20px repeat(3, 1fr); }
+.week-vote .days .titles, .week-vote .fills .titles { display: grid; align-items: center; justify-content: center; }
+.week-vote .days .types { height: 100%; }
+.week-vote .days .empty { height: 100%; background: #eee; }
+.week-vote .types > div { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 4px; height: 100%; }
+.week-vote .types button { margin: 0; padding: 0; }
+
+
+
+/* RESULTS */
+.results { font-size: 0.8em; overflow-y: scroll; }
 
 
 
 /* ANIMATIONS */
 .loading {
-  position: fixed; left: 50%; top: 50%; transform: translate(50%, -50%); width: 50%; padding-top: 50%; border-radius: 50%; border: 5px solid #000; border-color: #000 transparent #000 transparent; animation: loading 1.2s linear infinite;
+  position: fixed; display: none; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50%; padding-top: 50%; border-radius: 50%; border: 5px solid #000; border-color: #000 transparent #000 transparent; animation: loading 1.2s linear infinite;
 }
 @keyframes loading {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.btns { position: fixed; animation: btns 2s linear infinite; padding: 0; margin: 0; top: 0; }
-.btns i { padding: 0; margin: 0; font-size: 2.5em; }
-.btn_main { display: none; width: 100%; text-align: center; }
-.btn_next { right: 0; }
-.btn_prev { left: 0; }
+.btn_main { display: none; text-align: center; animation: btns 2s linear infinite; height: 42px !important; }
+.btn_main i { font-size: 2.5em; }
 @keyframes btns {
   0% { opacity: 1; }
   50% { opacity: 0.25; }
@@ -110,12 +158,22 @@ button {
 
 
 /* COLORING*/
-.add-plan button, .open-plan button { border: 2px solid var(--col-admin); }
-.add-plan .stepper { border: 2px solid var(--col-admin); background: var(--col-admin); color: white; }
-.add-plan .select, .open-plan .select, .main-menu button:nth-of-type(1), .main-menu button:nth-of-type(2) { background: var(--col-admin); color: white; }
+.add-plan div button, .open-plan button, .list div button:first-child, .types button:nth-child(1), .new-menu button {
+  border: 2px solid var(--col-admin); }
+.add-plan .stepper, .types button:nth-child(1).select {
+  border: 2px solid var(--col-admin); background: var(--col-admin); color: white; }
+.add-plan .select, .open-plan .select, .main-menu button:nth-of-type(1), .add-plan > button, .plan-list > button {
+  background: var(--col-admin); color: white; border: 2px solid var(--col-admin); }
 
-.user-vote button, .edit-vote button { border: 2px solid var(--col-user); }
-.user-vote .select, .edit-vote .select, .main-menu button:nth-of-type(3), .main-menu button:nth-of-type(4) { background: var(--col-user); color: white; }
+.user-vote button, .edit-vote button, .types button:nth-child(2) {
+  border: 2px solid var(--col-user); }
+.user-vote .select, .edit-vote .select, .main-menu button:nth-of-type(2), .voting button, .week-vote > button, .types button:nth-child(2).select {
+  background: var(--col-user); color: white; border: 2px solid var(--col-user); }
 
-.results button { border: 2px solid var(--col-result); }
-.results .select, .main-menu button:nth-of-type(5) { background: var(--col-result); color: white; }
+.results button, .types button:nth-child(3), .calc button {
+  border: 2px solid var(--col-result); }
+.results .select, .main-menu button:nth-of-type(3), .types button:nth-child(3).select, .calc button.select {
+  background: var(--col-result); color: white; border: 2px solid var(--col-result); }
+
+.list div button:last-child { background: red; border: 2px solid red; color: white; }
+.grayed { background: lightgray !important; border: 2px solid lightgray !important; color: white; }

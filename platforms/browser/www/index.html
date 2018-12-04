@@ -23,11 +23,18 @@
                         <div class="content-block" id="cb">
                           <div class="main-menu">
                             <h1>ROSTER</h1>
-                            <button value="add-plan">Nyt Skema</button>
-                            <button value="open-plan">Genåben Skema</button>
+                            <button value="new-menu">Nyt Skema</button>
+                            <!--<button value="open-plan">Genåben Skema</button>-->
                             <button value="user-vote">Angiv Vagtønsker</button>
-                            <button value="edit-vote">Rediger Vagtønsker</button>
-                            <button value="results">Beregn Plan</button>
+                            <!--<button value="edit-vote">Rediger Vagtønsker</button>-->
+                            <button value="calc">Beregn Plan</button>
+                          </div>
+
+                          <div class="new-menu">
+                            <input type="text" placeholder="Initialer" id="in"/>
+                            <input type="text" placeholder="Admin Kode" id="ak"/>
+                            <input type="text" placeholder="Bruger Kode" id="bk"/>
+                            <button>Opret</button>
                           </div>
 
                           <div class="add-plan">
@@ -66,7 +73,7 @@
                               <button value="4">T</button>
                               <button value="5">F</button>
                               <button value="6">L</button>
-                              <button value="7">S</button>
+                              <button value="0">S</button>
                             </div>
                             <div class="a-type">
                               <h2>Typer</h2>
@@ -86,37 +93,58 @@
                           </div>
 
                           <div class="plan-list">
-
+                            <div class="list"></div>
+                            <!--<div class="info">
+                              <input type="text" placeholder="Initialer" id="in"/>
+                              <input type="text" placeholder="Admin Kode" id="ak"/>
+                              <input type="text" placeholder="Bruger Kode" id="bk"/>
+                            </div>-->
+                            <button value="more">Tilføj flere vagter</button>
+                            <button value="enough">Gør tilgængelig</button>
                           </div>
 
-                          <div class="open-plan">
+                          <!--<div class="open-plan">
                             <input type="text" placeholder="ID"/>
                             <input type="text" placeholder="Admin Kode"/>
                             <button>Åben</button>
-                          </div>
+                          </div>-->
+
+                          <div class="success"></div>
 
                           <div class="user-vote">
-
+                            <input type="text" placeholder="ID"/>
+                            <input type="text" placeholder="Kode"/>
+                            <input type="text" placeholder="Initialer"/>
+                            <button>Åben</button>
                           </div>
 
-                          <div class="day-votes">
-
+                          <div class="voting">
+                            <div class="calendar"></div>
+                            <button>Send Ønsker</button>
                           </div>
 
-                          <div class="edit-vote">
+                          <div class="week-vote">
+                            <div class="weekly"></div>
+                          </div>
+
+                          <!--<div class="edit-vote">
                             <input type="text" placeholder="ID"/>
                             <input type="text" placeholder="Initialer"/>
+                            <input type="text" placeholder="Kode"/>
                             <button>Rediger</button>
+                          </div>-->
+
+                          <div class="calc">
+                            <input type="text" placeholder="ID"/>
+                            <input type="text" placeholder="Admin Kode"/>
+                            <button value="1" id="lock">Ulåst</button>
+                            <button id="beregn">Beregn</button>
                           </div>
 
-                          <div class="results">
+                          <div class="results"></div>
 
-                          </div>
-
-                          <div class="loading"></div>
-                          <a class="btns btn_main" onclick="javascript:page('main-menu')"><i class="material-icons">keyboard_arrow_up</i></a>
-                          <!--<a class="btns btn_next"><i class="material-icons">keyboard_arrow_right</i></a>
-                          <a class="btns btn_prev"><i class="material-icons">keyboard_arrow_left</i></a>-->
+                          <i class="loading"></i>
+                          <a class="btn_main" onclick="javascript:showpage('main-menu')"><i class="material-icons">keyboard_arrow_up</i></a>
                         </div>
                     </div>
                 </div>
