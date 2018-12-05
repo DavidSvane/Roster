@@ -261,16 +261,68 @@ function calcresult(id, admin, lock) {
   showpage('loading');
   $$.post('http://davidsvane.com/roster/results.php', {i: id, a: admin, l: lock}, function (d) {
     var obj = JSON.parse(d);
+    var cal = obj.plan;
 
-    var plan = obj.plan.cal;
-    var votes = obj.votes;
-    var users = Object.keys(votes);
+    console.log(cal);
 
-    console.log(plan);
-    console.log(votes);
-    console.log(users);
+    if (d.length < 10) {
+      showpage('calc');
+      return;
+    } else if (d.length < 42) {
+      $('.results').html('<h3></h3><h3>'+d+'</h3><h3></h3>')
+      showpage('results');
+      return;
+    }
 
-    $('.results').text(d)
+    $('.resulting').empty();
+    var counter = -1;
+
+    var years = Object.keys(cal);
+    for (var y = 0; y < years.length; y++) {
+      $('.resulting').append('<div class="years y_'+years[y]+'"><div>'+years[y]+'</div></div>');
+
+      var c_months = Object.keys(cal[years[y]]);
+      for (var m = 0; m < c_months.length; m++) {
+        $('.resulting .y_'+years[y]).append('<div class="c_months m_'+c_months[m]+'"><div>'+months[c_months[m]-1]+'</div><div class="titles"><div>Uge</div><div>M</div><div>T</div><div>O</div><div>T</div><div>F</div><div>L</div><div>S</div></div></div>');
+
+        for (var w = 0; w < weeksinmonth(years[y], c_months[m]); w++) {
+          var curr = new Date(years[y], c_months[m]-1, 1);
+          $('.resulting .y_'+years[y]+' .m_'+c_months[m]).append('<div class="weeks w_'+(curr.getWeekNumber()+w)+'"><div class="week">'+(curr.getWeekNumber()+w)+'</div></div>');
+        }
+
+        var date = new Date(years[y], c_months[m]-1, 1);
+        var fill = (date.getDay() + 6) % 7;
+        for (var f = 0; f < fill; f++) {
+          $('.resulting .y_'+years[y]+' .m_'+c_months[m]+' .weeks:nth-child(3)').append('<div class="fills"></div>');
+        }
+
+        var days = Object.keys(cal[years[y]][c_months[m]]);
+        for (var d = 0; d < days.length; d++) {
+          var curr = new Date(years[y], c_months[m]-1, days[d]);
+          var w = curr.getWeekNumber();
+
+          $('.resulting .y_'+years[y]+' .m_'+c_months[m]+' .w_'+w).append('<div class="days d_'+days[d]+'"></div>');
+
+          var types = Object.keys(cal[years[y]][c_months[m]][days[d]]);
+          for (var t = 0; t < types.length; t++) {
+            $('.resulting .y_'+years[y]+' .m_'+c_months[m]+' .w_'+w+' .d_'+days[d]).append('<div class="types type_'+types[t]+'"></div>');
+
+            var persons = cal[years[y]][c_months[m]][days[d]][types[t]];
+            if (persons != 0) {
+              for (var p = 0; p < persons.length; p++) {
+                $('.resulting .y_'+years[y]+' .m_'+c_months[m]+' .w_'+w+' .d_'+days[d]+' .type_'+types[t]).append('<div class="person rated'+persons[p][1]+'">'+persons[p][0]+'</div>');
+              }
+            }
+          }
+        }
+
+        var date = new Date(years[y], c_months[m], 0);
+        var fill = 6 - ((date.getDay() + 6) % 7);
+        for (var f = 0; f < fill; f++) {
+          $('.resulting .y_'+years[y]+' .m_'+c_months[m]+' .weeks:last-child').append('<div class="fills"></div>');
+        }
+      }
+    }
 
     showpage('results');
   });
@@ -377,9 +429,10 @@ $$(document).on('deviceready', function() {
   $('#beregn').click(function() {
     var id = $('.calc input:nth-of-type(1)').val();
     var admin = $('.calc input:nth-of-type(2)').val();
+    var mail = $('.calc input:nth-of-type(3)').val();
     var lock = $('#lock').val();
 
-    if ( id.length > 0 && admin.length > 0 ) {
+    if ( id.length > 0 && admin.length > 0 && mail.length > 0 ) {
       calcresult(id, admin, lock);
     }
   });
@@ -393,6 +446,14 @@ $$(document).on('deviceready', function() {
       $(this).text('Ulåst');
       $(this).removeClass("select");
     }
+  });
+  $('.results > button').click(function() {
+    showpage('loading');
+
+    var id = $('.calc input:nth-of-type(1)').val();
+    var mail = encodeURI($('.calc input:nth-of-type(3)').val());
+
+    $$.post('http://davidsvane.com/roster/mailer.php', {i: id, e: mail}, function (d) { showpage('results'); });
   });
 
 });

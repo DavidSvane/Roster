@@ -91,7 +91,9 @@ button {
 
 /* USER INPUT MENUS */
 .open-plan, .user-vote, .edit-vote, .calc, .new-menu { padding: 20% 0; }
-.open-plan { grid-template-rows: repeat(3, 1fr); } .edit-vote, .user-vote, .new-menu, .calc { grid-template-rows: repeat(4, 1fr); }
+.open-plan { grid-template-rows: repeat(3, 1fr); }
+.edit-vote, .user-vote, .new-menu { grid-template-rows: repeat(4, 1fr); }
+.calc { grid-template-rows: repeat(5, 1fr); }
 .open-plan > *, .edit-vote > *, .user-vote > *, .calc > *, .new-menu > * { display: block; font-size: 2em; width: 75%; text-align: center; margin: 0 auto; }
 .open-plan input, .edit-vote input, .user-vote input, .calc input, .new-menu input { border: none; border-bottom: 2px solid black; }
 
@@ -134,7 +136,24 @@ button {
 
 
 /* RESULTS */
-.results { font-size: 0.8em; overflow-y: scroll; }
+.results { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
+.results button { box-sizing: border-box; margin: 0 16px; }
+.resulting { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
+
+.resulting .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
+.resulting .years > div:first-child { text-align: center; font-size: 2em; }
+.resulting .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
+.resulting .c_months > div:first-child { text-align: center; font-size: 1.5em; }
+.resulting .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; }
+.resulting .titles { text-align: center; }
+.resulting .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; }
+.resulting .week { display: grid; align-items: center; justify-content: center; }
+.resulting .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; }
+.resulting .types { display: block; box-sizing: border-box; padding: 2px; background: #f4f4f4; }
+.resulting .person { display: inline-block; font-size: 0.9em; margin: 2px; box-sizing: border-box; }
+.resulting .rated1 { color: var(--col-admin); }
+.resulting .rated2 { color: var(--col-user); }
+.resulting .rated3 { color: var(--col-result); }
 
 
 
@@ -170,9 +189,9 @@ button {
 .user-vote .select, .edit-vote .select, .main-menu button:nth-of-type(2), .voting button, .week-vote > button, .types button:nth-child(2).select {
   background: var(--col-user); color: white; border: 2px solid var(--col-user); }
 
-.results button, .types button:nth-child(3), .calc button {
+.types button:nth-child(3), .calc > button {
   border: 2px solid var(--col-result); }
-.results .select, .main-menu button:nth-of-type(3), .types button:nth-child(3).select, .calc button.select {
+.main-menu button:nth-of-type(3), .types button:nth-child(3).select, .calc button.select, .results button {
   background: var(--col-result); color: white; border: 2px solid var(--col-result); }
 
 .list div button:last-child { background: red; border: 2px solid red; color: white; }
