@@ -267,7 +267,7 @@ function calcresult(id, admin, lock) {
 
       var c_months = Object.keys(cal[years[y]]);
       for (var m = 0; m < c_months.length; m++) {
-        $('.see-result-cnt .y_'+years[y]).append('<div class="c_months m_'+c_months[m]+'"><div>'+months[c_months[m]-1]+'</div><div class="titles"><div>Uge</div><div>M</div><div>T</div><div>O</div><div>T</div><div>F</div><div>L</div><div>S</div></div></div>');
+        $('.see-result-cnt .y_'+years[y]).append('<div class="c_months m_'+c_months[m]+'"><div>'+months[c_months[m]-1]+'</div><div class="titles"><div>Uge</div><div>M</div><div>T</div><div>O</div><div>T</div><div>F</div><div>L</div><div>S</div><div>Type</div></div></div>');
 
         for (var w = 0; w < weeksinmonth(years[y], c_months[m]); w++) {
           var curr = new Date(years[y], c_months[m]-1, 1);
@@ -308,6 +308,8 @@ function calcresult(id, admin, lock) {
       }
     }
 
+    $('.see-result-cnt .weeks').append('<div class="legend"><div>DV</div><div>AV</div><div>NV</div></div>');
+
     showpage('see-result');
   });
 }
@@ -336,7 +338,7 @@ function getpersonalplan(id, initials) {
 
       var c_months = Object.keys(cal[years[y]]);
       for (var m = 0; m < c_months.length; m++) {
-        $('.see-personal-cnt .y_'+years[y]).append('<div class="c_months m_'+c_months[m]+'"><div>'+months[c_months[m]-1]+'</div><div class="titles"><div>Uge</div><div>M</div><div>T</div><div>O</div><div>T</div><div>F</div><div>L</div><div>S</div></div></div>');
+        $('.see-personal-cnt .y_'+years[y]).append('<div class="c_months m_'+c_months[m]+'"><div>'+months[c_months[m]-1]+'</div><div class="titles"><div>Uge</div><div>M</div><div>T</div><div>O</div><div>T</div><div>F</div><div>L</div><div>S</div><div>Type</div></div></div>');
 
         for (var w = 0; w < weeksinmonth(years[y], c_months[m]); w++) {
           var curr = new Date(years[y], c_months[m]-1, 1);
@@ -362,6 +364,7 @@ function getpersonalplan(id, initials) {
 
             var persons = cal[years[y]][c_months[m]][days[d]][types[t]];
             if (persons != 0) {
+
               for (var p = 0; p < persons.length; p++) {
                 if (persons[p][0] == initi) {
                   $('.see-personal-cnt .y_'+years[y]+' .m_'+c_months[m]+' .w_'+w+' .d_'+days[d]+' .type_'+types[t]).append('<div class="person rated'+persons[p][1]+'">'+persons[p][0]+'</div>');
@@ -378,6 +381,13 @@ function getpersonalplan(id, initials) {
         }
       }
     }
+
+    $('.see-personal-cnt .weeks').append('<div class="legend"><div class="d"></div><div class="a"></div><div class="n"></div></div>');
+    $('.see-personal-cnt .person').each(function() {
+      var leg = $(this).parent().index();
+      var type = ['DV','AV','NV'];
+      $(this).parent().parent().parent().find('.legend div:nth-child('+(leg+1)+')').text(type[leg]);
+    });
 
     showpage('see-personal');
   });

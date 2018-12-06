@@ -136,24 +136,26 @@ button {
 
 
 /* RESULTS */
-.see-personal { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
-.see-personal button { box-sizing: border-box; margin: 0 16px; }
-.see-personal-cnt { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
+.see-result { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
+.see-result button { box-sizing: border-box; margin: 0 16px; }
+.see-result-cnt { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
 
-.see-personal-cnt .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
-.see-personal-cnt .years > div:first-child { text-align: center; font-size: 2em; }
-.see-personal-cnt .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
-.see-personal-cnt .c_months > div:first-child { text-align: center; font-size: 1.5em; }
-.see-personal-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; text-align: center; }
-.see-personal-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; }
-.see-personal-cnt .week { display: grid; align-items: center; justify-content: center; }
-.see-personal-cnt .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; }
-.see-personal-cnt .types { display: block; box-sizing: border-box; padding: 2px; background: #f4f4f4; }
-.see-personal-cnt .person { display: inline-block; font-size: 0.9em; margin: 2px; box-sizing: border-box; }
-.see-personal-cnt .rated1 { color: var(--col-admin); }
-.see-personal-cnt .rated2 { color: var(--col-user); }
-.see-personal-cnt .rated3 { color: var(--col-result); }
-.see-personal-cnt .rated0 { font-weight: bold; font-style: italic; }
+.see-result-cnt .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
+.see-result-cnt .years > div:first-child { text-align: center; font-size: 2em; }
+.see-result-cnt .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
+.see-result-cnt .c_months > div:first-child { text-align: center; font-size: 1.5em; }
+.see-result-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; text-align: center; }
+.see-result-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; }
+.see-result-cnt .week { display: grid; align-items: center; justify-content: center; }
+.see-result-cnt .legend { display: grid; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; align-items: center; justify-content: center; }
+.see-result-cnt .legend > div { font-size: 0.8em; }
+.see-result-cnt .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; }
+.see-result-cnt .types { display: block; box-sizing: border-box; padding: 2px; background: #f4f4f4; }
+.see-result-cnt .person { display: inline-block; font-size: 0.9em; margin: 2px; box-sizing: border-box; }
+.see-result-cnt .rated1 { color: var(--col-admin); }
+.see-result-cnt .rated2 { color: var(--col-user); }
+.see-result-cnt .rated3 { color: var(--col-result); }
+.see-result-cnt .rated0 { font-weight: bold; font-style: italic; }
 
 
 
@@ -166,10 +168,12 @@ button {
 .see-personal-cnt .years > div:first-child { text-align: center; font-size: 2em; }
 .see-personal-cnt .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
 .see-personal-cnt .c_months > div:first-child { text-align: center; font-size: 1.5em; }
-.see-personal-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; text-align: center; }
-.see-personal-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; }
+.see-personal-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; text-align: center; }
+.see-personal-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; }
 .see-personal-cnt .week { display: grid; align-items: center; justify-content: center; }
 .see-personal-cnt .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; }
+.see-personal-cnt .legend { display: grid; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; align-items: center; justify-content: center; }
+.see-personal-cnt .legend > div { font-size: 0.8em; }
 .see-personal-cnt .types { display: block; box-sizing: border-box; padding: 2px; background: #f4f4f4; }
 .see-personal-cnt .person { display: inline-block; font-size: 0.9em; margin: 2px; box-sizing: border-box; }
 .see-personal-cnt .rated1 { color: var(--col-admin); }
@@ -213,7 +217,7 @@ button {
 
 .types button:nth-child(3), .calc-menu > button {
   border: 2px solid var(--col-result); }
-.main-menu button:nth-of-type(3), .types button:nth-child(3).select, .calc-menu button.select {
+.main-menu button:nth-of-type(3), .types button:nth-child(3).select, .calc-menu button.select, .see-result button {
   background: var(--col-result); color: white; border: 2px solid var(--col-result); }
 
 .user-menu button {
