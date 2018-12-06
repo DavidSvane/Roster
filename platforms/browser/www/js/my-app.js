@@ -37,8 +37,8 @@ function subplan(r) {
       case 'a-num': txt += r[i].split(":")[1] + ' af hver'; break;
     }
   }
-  $('plan-list-cnt').append('<div><button>'+txt+'</button><i>___'+r+'</i><button>Slet</button></div>');
-  $('plan-list-cnt div:last-child button:last-child').click(function() { $(this).parent().remove(); });
+  $('.plan-list-cnt').append('<div><button>'+txt+'</button><i>___'+r+'</i><button>Slet</button></div>');
+  $('.plan-list-cnt div:last-child button:last-child').click(function() { $(this).parent().remove(); });
 }
 function clearplan() {
   $('.add-plan .select').each(function() {
@@ -46,22 +46,6 @@ function clearplan() {
   });
   $('.add-plan .num').text(0);
   $('.add-plan > button').text('Vis tilføjede');
-}
-function addplan(initials, admin, pass, open, list) {
-  showpage('loading');
-  $$.post('http://davidsvane.com/roster/addplan.php', {i: initials, a: admin, p: pass, o: open, l: list}, function (d) {
-    var obj = JSON.parse(d);
-
-    $('.success').empty();
-    $('.success').append('<h3>Plan ID: <b>'+ obj.id +'</b></h3>');
-    $('.success').append('<h3>Admin kode: <b>'+ obj.admin +'</b></h3>');
-    $('.success').append('<h3>Bruger kode: <b>'+ obj.pass +'</b></h3>');
-    $('.success').append('<h3>Gem oplysningerne!</h3>')
-
-    showpage('success');
-    $('plan-list-cnt').empty();
-    clearplan();
-  });
 }
 function weeksinmonth(year, month_number) {
 
@@ -89,6 +73,26 @@ Date.prototype.getWeekNumber = function(){
   var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
   return Math.ceil((((d - yearStart) / 86400000) + 1)/7)
 };
+
+
+
+// SERVER MODULES
+function addplan(initials, admin, pass, open, list) {
+  showpage('loading');
+  $$.post('http://davidsvane.com/roster/addplan.php', {i: initials, a: admin, p: pass, o: open, l: list}, function (d) {
+    var obj = JSON.parse(d);
+
+    $('.success').empty();
+    $('.success').append('<h3>Plan ID: <b>'+ obj.id +'</b></h3>');
+    $('.success').append('<h3>Admin kode: <b>'+ obj.admin +'</b></h3>');
+    $('.success').append('<h3>Bruger kode: <b>'+ obj.pass +'</b></h3>');
+    $('.success').append('<h3>Gem oplysningerne!</h3>')
+
+    showpage('success');
+    $('.plan-list-cnt').empty();
+    clearplan();
+  });
+}
 function getplan(id, pass, initials) {
   showpage('loading');
   $$.post('http://davidsvane.com/roster/getplan.php', {i: id, p: pass, initi: initials}, function (d) {
@@ -166,6 +170,7 @@ function getplan(id, pass, initials) {
     }
 
     $('.weeks').click(function() {
+      $('.week-list .week-list-cnt').empty();
       $('.week-list .week-list-cnt').html( $(this).html() );
       $('.week-list .week-list-cnt > div').each(function(i) {
         $(this).prepend('<div class="titles">'+shortdays[i]+'</div>');
@@ -212,16 +217,13 @@ function getplan(id, pass, initials) {
     showpage('add-vote');
   });
 }
-function addvotes() {
+function addvotes(id, pass, initials) {
 
   showpage('loading');
 
   var v1 = [];
   var v2 = [];
   var v3 = [];
-  var id = $('.vote-menu input:nth-of-type(1)').val();
-  var pass = $('.vote-menu input:nth-of-type(2)').val();
-  var initials = $('.vote-menu input:nth-of-type(3)').val();
 
   $('.add-vote .v1 div').each(function() { v1.push( $(this).attr("class") ); $(this).parent().remove(); });
   $('.add-vote .v2 div').each(function() { v2.push( $(this).attr("class") ); $(this).parent().remove(); });
@@ -467,8 +469,8 @@ $$(document).on('deviceready', function() {
     if ( $(this).val() == 'more' ) {
       clearplan();
       showpage('add-plan');
-    } else if ( $(this).val() == 'enough' && $('plan-list-cnt > div').length > 0 ) {
-      var list = $('plan-list-cnt > div i').text();
+    } else if ( $(this).val() == 'enough' && $('.plan-list-cnt > div').length > 0 ) {
+      var list = $('.plan-list-cnt > div i').text();
       addplan( $('#in').val(), $('#ak').val(), $('#bk').val(), true, list);
     }
   });
@@ -481,7 +483,15 @@ $$(document).on('deviceready', function() {
       getplan(id, pass, initials);
     }
   });
-  $('.add-vote > button').click(function() { addvotes(); });
+  $('.add-vote > button').click(function() {
+    var id = $('.vote-menu input:nth-of-type(1)').val();
+    var pass = $('.vote-menu input:nth-of-type(2)').val();
+    var initials = $('.vote-menu input:nth-of-type(3)').val();
+
+    if ( id.length > 0 && pass.length > 0 && initials.length > 0 ) {
+      addvotes(id, pass, initials);
+    }
+  });
 
 
   // RESULT CONTROLS

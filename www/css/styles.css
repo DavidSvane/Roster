@@ -10,26 +10,24 @@
 }
 
 @font-face { font-family: gid; src: url(gidolinyaregular.otf); }
-* { font-family: gid; text-transform: uppercase; user-select: none; }
+* {
+  font-family: gid;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+  box-sizing: border-box;
+  align-items: center;
+}
 
 
 
 /* STANDARD ELEMENTS */
-h1 { margin: 0 auto; }
-h2 { margin: 0 0 0.5em; font-size: 1em; text-align: center; }
+h1 { margin: 0 auto; font-size: 2em; }
+h2 { margin: 0 0 0.5em; font-size: 1em; }
 h3 { margin: 0 auto; font-weight: normal; }
 a { text-decoration: none; color: black; }
-input { border: none; border-bottom: 2px solid black; }
-
-button {
-  display: inline-block;
-  margin: 4px;
-  padding: 0.5em 0.75em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  background: white;
-  border: 2px solid black;
-}
+input { border: none; border-bottom: 2px solid black; display: inline-block; }
+button { display: inline-block; margin: 0; padding: 0.5em 0.75em; border-radius: 6px; background: white; border: 2px solid black; }
 
 
 
@@ -38,38 +36,33 @@ button {
   position: fixed;
   left: 0;
   top: 0;
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: none;
-  align-items: center;
 }
-#cb > div.main-menu { display: grid; }
 
 
 
 /* MENU */
-.main-menu { grid-template-rows: repeat(5, 1fr); grid-gap: 4px; padding: 20% 0; }
-.main-menu button { align-self: center; width: 80%; margin: 0 auto; padding: 16px 0; font-size: 1.25em; }
+#cb > div.main-menu, .submenu { display: grid; grid-gap: 1em; }
+.submenu { grid-template-rows: repeat(6, 1fr); }
+.main-menu, .submenu.calc-menu { grid-template-rows: repeat(7, 1fr); }
+.main-menu button, .submenu button, .submenu input { width: 80%; margin: 0 auto; font-size: 1.5em; }
 
 
 
 /* ADD PLAN FORM */
-.add-plan { grid-template-rows: 2fr 3fr 2fr 2fr 2fr 2fr 1fr; padding: 32px 16px 16px; }
-.a-year, .a-month, .a-week, .a-day, .a-type, .a-num { display: grid; box-sizing: border-box; align-items: center; }
-.add-plan .a-year { grid-template-columns: repeat(3, 1fr); }
-.add-plan .a-year h2 { grid-column-start: 1; grid-column-end: 4; }
-.add-plan .a-month { grid-template-columns: repeat(6, 1fr); }
-.add-plan .a-month h2 { grid-column-start: 1; grid-column-end: 7; }
-.add-plan .a-week { grid-template-columns: repeat(3, 1fr); }
-.add-plan .a-week h2 { grid-column-start: 1; grid-column-end: 4; }
-.add-plan .a-day { grid-template-columns: repeat(7, 1fr); }
-.add-plan .a-day h2 { grid-column-start: 1; grid-column-end: 8; }
-.add-plan .a-type { grid-template-columns: repeat(3, 1fr); }
-.add-plan .a-type h2 { grid-column-start: 1; grid-column-end: 4; }
+.add-plan { grid-template-rows: 2fr 3fr 2fr 2fr 2fr 2fr 1fr; grid-gap: 2px; padding: 32px 16px 16px; }
+.a-year, .a-month, .a-week, .a-day, .a-type, .a-num { display: grid; grid-gap: 4px; }
+.a-year, .a-week, .a-type { grid-template-columns: repeat(3, 1fr); }
+.a-year h2, .a-week h2, .a-type h2 { grid-column-start: 1; grid-column-end: 4; }
+.a-month { grid-template-columns: repeat(6, 1fr); }
+.a-month h2 { grid-column-start: 1; grid-column-end: 7; }
+.a-day { grid-template-columns: repeat(7, 1fr); }
+.a-day h2 { grid-column-start: 1; grid-column-end: 8; }
 
 .stepper { display: block; padding: 0; margin: 4px auto; border-radius: 1.5em; overflow: hidden; }
-.stepper * { text-align: center; display: inline-block; }
+.stepper * { display: inline-block; }
 .stepper span:nth-child(2n-1) { font-size: 1.5em; }
 .stepper span:nth-child(1) { padding: 0.1em 0.4em 0.2em 0.75em; }
 .stepper span:nth-child(2) { padding: 0.6em 0 0.5em; width: 3em; background: white; color: black; }
@@ -79,107 +72,64 @@ button {
 
 /* SUB-PLAN LIST */
 .plan-list { grid-template-rows: calc(100% - 108px) 42px 42px; padding: 42px 0px 16px; grid-gap: 8px; }
-.plan-list .plan-list-cnt { display: block; box-sizing: border-box; width: 100%; height: 100%; overflow-y: scroll; padding: 8px 0; }
+.plan-list .plan-list-cnt { display: block; width: 100%; height: 100%; overflow-y: scroll; padding: 8px 0; }
 .plan-list > button { margin: 0 20px 2px; }
 .plan-list .plan-list-cnt i { display: none; }
-.plan-list .plan-list-cnt div { display: grid; box-sizing: border-box; grid-template-columns: 5fr 1fr; padding: 8px 16px; }
-.plan-list .info { display: grid; box-sizing: border-box; grid-template-rows: repeat(3, 1fr); width: 100%; height: 100%; padding: 12px 80px; grid-gap: 8px; }
-.plan-list .info input { border: none; border-bottom: 1px solid black; text-align: center; }
+.plan-list .plan-list-cnt div { display: grid; grid-template-columns: 5fr 1fr; padding: 8px 16px; grid-gap: 8px; }
+.plan-list .info { display: grid; grid-template-rows: repeat(3, 1fr); width: 100%; height: 100%; padding: 12px 80px; grid-gap: 8px; }
+.plan-list .info input { border: none; border-bottom: 1px solid black; }
 
-.success { display: grid; box-sizing: border-box; grid-template-rows: repeat(4, 1fr); padding: 30% 0; align-items: center; justify-content: center; }
+.success { display: grid; grid-template-rows: repeat(4, 1fr); padding: 30% 0;  justify-content: center; }
 .success h3:last-child { color: red; }
 
 
 
-/* USER INPUT MENUS */
-.vote-menu, .calc-menu, .add-menu, .user-menu { padding: 20% 0; }
-.vote-menu, .add-menu, .user-menu { grid-template-rows: repeat(4, 1fr); }
-.calc-menu, { grid-template-rows: repeat(5, 1fr); }
-.vote-menu > *, .calc-menu > *, .add-menu > *, .user-menu > * { display: block; font-size: 2em; width: 75%; text-align: center; margin: 0 auto; }
+/* CALENDAR VIEW */
+.add-vote, .week-list, .see-result, .see-personal {
+    display: grid; grid-template-rows: calc(100% - 54px) 54px; }
+.add-vote-cnt, .see-result-cnt, .see-personal-cnt {
+    display: grid; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
+.add-vote-cnt .years, .see-result-cnt .years, .see-personal-cnt .years {
+    display: grid; grid-gap: 16px; grid-template-columns: 1fr; width: 100%; }
+.add-vote-cnt .c_months, .see-result-cnt .c_months, .see-personal-cnt .c_months {
+    display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
+.add-vote-cnt .titles, .add-vote-cnt .weeks, .see-result-cnt .titles, .see-result-cnt .weeks, .see-personal-cnt .titles, .see-personal-cnt .weeks {
+    display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr);  }
+.add-vote-cnt .days, .see-result-cnt .days, .see-personal-cnt .days {
+    display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); height: 100%; }
+.add-vote button, .week-list > button, .see-result > button, .see-personal > button {
+    margin: 0 16px; }
+.add-vote-cnt .years > div:first-child, .see-result-cnt .years > div:first-child, .see-personal-cnt .years > div:first-child {
+    font-size: 2em; }
+.add-vote-cnt .c_months > div:first-child, .see-result-cnt .c_months > div:first-child, .see-personal-cnt .c_months > div:first-child {
+    font-size: 1.5em; }
 
 
 
-/* VOTING PAGES */
-.add-vote, .week-list { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
-.add-vote button, .week-list > button { box-sizing: border-box; margin: 0 16px; }
-.add-vote-cnt { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
+/* COMMON AND PERSONAL RESULTS */
+.see-result-cnt .legend, .see-personal-cnt .legend { display: grid; grid-template-rows: repeat(3, 1fr); height: 100%;  justify-content: center; }
+.see-result-cnt .legend > div, .see-personal-cnt .legend > div { font-size: 0.8em; }
+.see-result-cnt .types, .see-personal-cnt .types { display: block; padding: 2px; background: #f4f4f4; height: 100%; }
+.see-result-cnt .person, .see-personal-cnt .person { display: inline-block; font-size: 0.9em; margin: 2px; font-weight: bold; }
+.see-result-cnt .rated0, .see-personal-cnt .rated0 { font-style: italic; }
 
-.add-vote-cnt .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
-.add-vote-cnt .years > div:first-child { text-align: center; font-size: 2em; }
-.add-vote-cnt .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, 42px); }
-.add-vote-cnt .c_months > div:first-child { text-align: center; font-size: 1.5em; }
-.add-vote-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); align-items: center; }
-.add-vote-cnt .titles { text-align: center; }
-.add-vote-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(8, 1fr); }
-.add-vote-cnt .week { display: grid; align-items: center; justify-content: center; }
-.add-vote-cnt .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 42px; }
+/* VOTING PAGE */
 .add-vote-cnt .types div { display: none; }
-.add-vote-cnt .type, .add-vote-cnt .type > * { width: 100%; height: 100%; font-size: 0; }
+.add-vote-cnt .type { height: 14px; }
+.add-vote-cnt .type > * { width: 100%; height: 100%; font-size: 0; }
 .add-vote-cnt .type .types { background: #ccc; }
-.add-vote-cnt .type .types.v1 { background: var(--col-admin); }
-.add-vote-cnt .type .types.v2 { background: var(--col-user); }
-.add-vote-cnt .type .types.v3 { background: var(--col-result); }
 .add-vote-cnt .type .empty { background: #eee; }
 
-.week-list .week-list-cnt { display: grid; grid-gap: 4px; box-sizing: border-box; height: calc(100% - 54px); padding: 0 16px; margin: 42px 0 12px; grid-template-rows: repeat(8, 2fr); }
-.week-list .week { display: grid; box-sizing: border-box; grid-template-columns: 20px repeat(3, 1fr); height: 100%; align-items: center; justify-content: center; }
-.week-list .week > div:first-child { grid-column-start: 1; grid-column-end: 5; }
-.week-list .week div { display: grid; align-items: center; justify-content: center; }
-.week-list .week div:first-child { font-size: 1.5em; }
-.week-list .days, .week-list .fills { display: grid; box-sizing: border-box; height: 100%; grid-gap: 4px; grid-template-columns: 20px repeat(3, 1fr); }
-.week-list .days .titles, .week-list .fills .titles { display: grid; align-items: center; justify-content: center; }
-.week-list .days .types { height: 100%; }
-.week-list .days .empty { height: 100%; background: #eee; }
-.week-list .types > div { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 4px; height: 100%; }
-.week-list .types button { margin: 0; padding: 0; }
-
-
-
-/* RESULTS */
-.see-result { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
-.see-result button { box-sizing: border-box; margin: 0 16px; }
-.see-result-cnt { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
-
-.see-result-cnt .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
-.see-result-cnt .years > div:first-child { text-align: center; font-size: 2em; }
-.see-result-cnt .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
-.see-result-cnt .c_months > div:first-child { text-align: center; font-size: 1.5em; }
-.see-result-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; text-align: center; }
-.see-result-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; }
-.see-result-cnt .week { display: grid; align-items: center; justify-content: center; }
-.see-result-cnt .legend { display: grid; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; align-items: center; justify-content: center; }
-.see-result-cnt .legend > div { font-size: 0.8em; }
-.see-result-cnt .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; }
-.see-result-cnt .types { display: block; box-sizing: border-box; padding: 2px; background: #f4f4f4; }
-.see-result-cnt .person { display: inline-block; font-size: 0.9em; margin: 2px; box-sizing: border-box; }
-.see-result-cnt .rated1 { color: var(--col-admin); }
-.see-result-cnt .rated2 { color: var(--col-user); }
-.see-result-cnt .rated3 { color: var(--col-result); }
-.see-result-cnt .rated0 { font-weight: bold; font-style: italic; }
-
-
-
-/* RESULTS */
-.see-personal { display: grid; grid-template-rows: calc(100% - 54px) 54px; }
-.see-personal button { box-sizing: border-box; margin: 0 16px; }
-.see-personal-cnt { display: grid; box-sizing: border-box; margin: 42px 0 0; padding: 16px; height: calc(100% - 42px); grid-gap: 8px; align-items: start; overflow: auto; }
-
-.see-personal-cnt .years { display: grid; grid-gap: 16px; grid-template-columns: 1fr; box-sizing: border-box; width: 100%; }
-.see-personal-cnt .years > div:first-child { text-align: center; font-size: 2em; }
-.see-personal-cnt .c_months { display: grid; grid-gap: 8px; grid-auto-rows: auto repeat(6, auto); }
-.see-personal-cnt .c_months > div:first-child { text-align: center; font-size: 1.5em; }
-.see-personal-cnt .titles { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; text-align: center; }
-.see-personal-cnt .weeks { display: grid; grid-gap: 2px; grid-template-columns: repeat(9, 1fr); align-items: center; }
-.see-personal-cnt .week { display: grid; align-items: center; justify-content: center; }
-.see-personal-cnt .days { display: grid; grid-gap: 2px; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; }
-.see-personal-cnt .legend { display: grid; grid-template-rows: repeat(3, 1fr); box-sizing: border-box; height: 100%; align-items: center; justify-content: center; }
-.see-personal-cnt .legend > div { font-size: 0.8em; }
-.see-personal-cnt .types { display: block; box-sizing: border-box; padding: 2px; background: #f4f4f4; }
-.see-personal-cnt .person { display: inline-block; font-size: 0.9em; margin: 2px; box-sizing: border-box; }
-.see-personal-cnt .rated1 { color: var(--col-admin); }
-.see-personal-cnt .rated2 { color: var(--col-user); }
-.see-personal-cnt .rated3 { color: var(--col-result); }
-.see-personal-cnt .rated0 { font-weight: bold; font-style: italic; }
+/* VOTING SUBMENU */
+.week-list-cnt { display: grid; grid-gap: 8px; height: calc(100% - 54px); padding: 0 16px; margin: 42px 0 12px; grid-template-rows: repeat(8, 2fr); }
+.week-list-cnt * { height: 100%; }
+.week-list .week, .week-list .days, .week-list .fills {
+    display: grid; grid-gap: 8px; grid-template-columns: 24px repeat(3, 1fr); height: 100%; align-items: center; }
+.week-list .week div, .week-list .days .titles, .week-list .fills .titles { display: grid; align-items: center; }
+.week-list .week div:first-child { grid-column-start: 1; grid-column-end: 5; font-size: 1.5em; }
+.week-list .types > div { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 4px; }
+.week-list .types button { margin: 0; padding: 0; font-size: 1.25em; }
+.week-list .empty { height: 100%; background: #f2f2f2; }
 
 
 
@@ -192,7 +142,7 @@ button {
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.btn_main { display: none; text-align: center; animation: btns 2s linear infinite; height: 42px !important; }
+.btn_main { display: none; animation: btns 2s linear infinite; height: 42px !important; }
 .btn_main i { font-size: 2.5em; }
 @keyframes btns {
   0% { opacity: 1; }
@@ -209,16 +159,22 @@ button {
   border: 2px solid var(--col-admin); background: var(--col-admin); color: white; }
 .add-plan .select, .open-plan .select, .main-menu button:nth-of-type(1), .add-plan > button, .plan-list > button {
   background: var(--col-admin); color: white; border: 2px solid var(--col-admin); }
+.see-result-cnt .rated1, .see-personal-cnt .rated1 { color: var(--col-admin); }
+.add-vote-cnt .type .v1 { background: var(--col-admin); }
 
 .vote-menu button, .edit-vote button, .types button:nth-child(2) {
   border: 2px solid var(--col-user); }
 .vote-menu .select, .edit-vote .select, .main-menu button:nth-of-type(2), .add-vote button, .week-list > button, .types button:nth-child(2).select {
   background: var(--col-user); color: white; border: 2px solid var(--col-user); }
+.see-result-cnt .rated2, .see-personal-cnt .rated2 { color: var(--col-user); }
+.add-vote-cnt .type .v2 { background: var(--col-user); }
 
 .types button:nth-child(3), .calc-menu > button {
   border: 2px solid var(--col-result); }
 .main-menu button:nth-of-type(3), .types button:nth-child(3).select, .calc-menu button.select, .see-result button {
   background: var(--col-result); color: white; border: 2px solid var(--col-result); }
+.see-result-cnt .rated3, .see-personal-cnt .rated3 { color: var(--col-result); }
+.add-vote-cnt .type .v3 { background: var(--col-result); }
 
 .user-menu button {
   border: 2px solid var(--col-personal); }
