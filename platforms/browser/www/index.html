@@ -21,22 +21,41 @@
                 <div data-page="index" class="page">
                     <div class="page-content">
                         <div class="content-block" id="cb">
+                          <!-- MENUS -->
                           <div class="main-menu">
                             <h1>ROSTER</h1>
-                            <button value="new-menu">Nyt Skema</button>
-                            <!--<button value="open-plan">Genåben Skema</button>-->
-                            <button value="user-vote">Angiv Vagtønsker</button>
-                            <!--<button value="edit-vote">Rediger Vagtønsker</button>-->
-                            <button value="calc">Beregn Plan</button>
+                            <button value="add-menu">Nyt Skema</button>
+                            <button value="vote-menu">Angiv Vagtønsker</button>
+                            <button value="calc-menu">Beregn Plan</button>
+                            <button value="user-menu">Personlig Plan</button>
                           </div>
-
-                          <div class="new-menu">
+                          <div class="add-menu">
                             <input type="text" placeholder="Initialer" id="in"/>
                             <input type="text" placeholder="Admin Kode" id="ak"/>
                             <input type="text" placeholder="Bruger Kode" id="bk"/>
                             <button>Opret</button>
                           </div>
+                          <div class="vote-menu">
+                            <input type="text" placeholder="ID"/>
+                            <input type="text" placeholder="Kode"/>
+                            <input type="text" placeholder="Initialer"/>
+                            <button>Åben</button>
+                          </div>
+                          <div class="calc-menu">
+                            <input type="text" placeholder="ID"/>
+                            <input type="text" placeholder="Admin Kode"/>
+                            <input type="text" placeholder="Email"/>
+                            <button value="1" id="lock">Ulåst</button>
+                            <button id="beregn">Beregn</button>
+                          </div>
+                          <div class="user-menu">
+                            <input type="text" placeholder="ID"/>
+                            <input type="text" placeholder="Initialer"/>
+                            <input type="text" placeholder="Email"/>
+                            <button>Se Plan</button>
+                          </div>
 
+                          <!-- ADD NEW PLANS AND VOTES -->
                           <div class="add-plan">
                             <div class="a-year">
                               <h2>År</h2>
@@ -91,64 +110,35 @@
                             </div>
                             <button>Vis tilføjede</button>
                           </div>
-
                           <div class="plan-list">
-                            <div class="list"></div>
-                            <!--<div class="info">
-                              <input type="text" placeholder="Initialer" id="in"/>
-                              <input type="text" placeholder="Admin Kode" id="ak"/>
-                              <input type="text" placeholder="Bruger Kode" id="bk"/>
-                            </div>-->
+                            <div class="plan-list-cnt"></div>
                             <button value="more">Tilføj flere vagter</button>
                             <button value="enough">Gør tilgængelig</button>
                           </div>
-
-                          <!--<div class="open-plan">
-                            <input type="text" placeholder="ID"/>
-                            <input type="text" placeholder="Admin Kode"/>
-                            <button>Åben</button>
-                          </div>-->
-
-                          <div class="success"></div>
-
-                          <div class="user-vote">
-                            <input type="text" placeholder="ID"/>
-                            <input type="text" placeholder="Kode"/>
-                            <input type="text" placeholder="Initialer"/>
-                            <button>Åben</button>
-                          </div>
-
-                          <div class="voting">
-                            <div class="calendar"></div>
+                          <div class="add-vote">
+                            <div class="add-vote-cnt"></div>
                             <button>Send Ønsker</button>
                           </div>
-
-                          <div class="week-vote">
-                            <div class="weekly"></div>
+                          <div class="week-list">
+                            <div class="week-list-cnt"></div>
                           </div>
 
-                          <!--<div class="edit-vote">
-                            <input type="text" placeholder="ID"/>
-                            <input type="text" placeholder="Initialer"/>
-                            <input type="text" placeholder="Kode"/>
-                            <button>Rediger</button>
-                          </div>-->
-
-                          <div class="calc">
-                            <input type="text" placeholder="ID"/>
-                            <input type="text" placeholder="Admin Kode"/>
-                            <input type="text" placeholder="Email"/>
-                            <button value="1" id="lock">Ulåst</button>
-                            <button id="beregn">Beregn</button>
+                          <!-- SEE RESULTS AND PERSONAL -->
+                          <div class="see-result">
+                            <div class="see-result-cnt"></div>
+                            <button>Send plan til mail</button>
                           </div>
-
-                          <div class="results">
-                            <div class="resulting"></div>
+                          <div class="see-personal">
+                            <div class="see-personal-cnt"></div>
                             <button>Send plan til mail</button>
                           </div>
 
+                          <!-- COMMON ELEMENTS -->
+                          <div class="success"></div>
                           <i class="loading"></i>
-                          <a class="btn_main" onclick="javascript:showpage('main-menu')"><i class="material-icons">keyboard_arrow_up</i></a>
+                          <a class="btn_main" onclick="javascript:showpage('main-menu')">
+                            <i class="material-icons">keyboard_arrow_up</i>
+                          </a>
                         </div>
                     </div>
                 </div>
