@@ -1,4 +1,3 @@
-/* VARIABLES AND FONTS */
 :root {
   --col-admin: #4caf50;
   --col-user: #ff9800;
@@ -8,8 +7,11 @@
 :focus {
   outline: none;
 }
-
 @font-face { font-family: gid; src: url(gidolinyaregular.otf); }
+
+
+
+/* BASE SETUP */
 * {
   font-family: gid;
   text-transform: uppercase;
@@ -18,10 +20,6 @@
   box-sizing: border-box;
   align-items: center;
 }
-
-
-
-/* STANDARD ELEMENTS */
 h1 { margin: 0 auto; font-size: 2em; }
 h2 { margin: 0 0 0.5em; font-size: 1em; }
 h3 { margin: 0 auto; font-weight: normal; }

@@ -527,9 +527,9 @@ $$(document).on('deviceready', function() {
   $('.user-menu button').click(function() {
     var id = $('.user-menu input:nth-of-type(1)').val();
     var initials = $('.user-menu input:nth-of-type(2)').val();
-    var email = $('.user-menu input:nth-of-type(3)').val();
+    var mail = encodeURI($('.user-menu input:nth-of-type(3)').val());
 
-    if ( id.length > 0 && initials.length > 0 && email.length > 0 ) {
+    if ( id.length > 0 && initials.length > 0 && mail.length > 0 ) {
       getpersonalplan(id, initials);
     }
   });
